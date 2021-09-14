@@ -6,6 +6,8 @@
  * into groups of size k, and separated by a '-'. If there
  * are not enough letters to fill a group, the incomplete
  * group should be at the beginning of the new license key.
+ * 
+ * Time Complexity: O(n)
  */
  function licenseKeyFormatting(s: string, k: number) {
     const letters = [];

@@ -63,7 +63,7 @@ function threeSum(arr: number[], x: number): [number, number, number] {
 }
 
 // Test
-// console.log(threeSum([1,2,4,5,12], 19));
+console.log(threeSum([1,2,4,5,12], 19));
 
 /**
  * Using the two pointer algorithm, this method will be given

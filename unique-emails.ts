@@ -3,6 +3,8 @@
  * 
  * Unique emails will disregard any '.'s, and everything after the first
  * '+' is ignored.
+ * 
+ * Time Complexity: O(n)
  */
 function numUniqueEmails(emails: string[]) {
     const normalizedEmails = emails.map((email) => {

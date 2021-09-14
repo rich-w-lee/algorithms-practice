@@ -3,7 +3,7 @@
  * 
  * Returns -1 if the number is not present.
  * 
- * Different than Array.find because this is in O(log(n)) time vs O(n)
+ * Time Complexity: O(log(n))
  */
 function binarySearch(arr: number[], x: number): number {
   let left = 0;
@@ -31,6 +31,8 @@ console.log(binarySearch([1,2,4,5,7,8,10], 7)); // Expect = 4
 
 /**
  * Finds the start and end index of a grouping of the number X
+ * 
+ * Time Complexity: O(log(n))
  */
 function binarySearchGroup(arr: number[], x: number): [number, number] {
   let left = 0;
