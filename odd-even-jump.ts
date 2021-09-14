@@ -11,6 +11,8 @@
  * - For an even jump (2nd, 4th, 6th, etc), we move to the
  *   next element in the list that is lower than the current value
  *   and the highest possible value in the rest of the array
+ * 
+ * Time Complexity: O(n^3)
  */
 function oddEvenJumps(arr: number[]): number {
   let numGoodIndexes = 1;
