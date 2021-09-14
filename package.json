@@ -1,0 +1,17 @@
+{
+  "name": "algorithms-practice",
+  "version": "1.0.0",
+  "description": "A collection of common algorithmic problems",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rich-w-lee/algorithms-practice.git"
+  },
+  "devDependencies": {
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
+  }
+}
