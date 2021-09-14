@@ -1,9 +1,13 @@
 /**
- * @param {number[]} arr
- * @param {number} x
- * @return {number[]}
+ * Using the two pointer algorithm, this method will find
+ * the indexes of the two numbers in the passed sorted array
+ * that add up to the passed sum.
+ * 
+ * Returns [-1,-1] if there are no numbers that can be found
+ * 
+ * Time Complexity: O(n)
  */
-function twoSum(arr, x) {
+function twoSum(arr: number[], x: number): [number, number] {
   let i = 0;
   let j = arr.length - 1;
 
@@ -24,15 +28,19 @@ function twoSum(arr, x) {
 
 
 // Test
-// console.log(twoSum([-1, 1, 2, 3, 5], 5));
+console.log(twoSum([-1, 1, 2, 3, 5], 5));
 
 
 /**
- * @param {number[]} arr
- * @param {number} x
- * @return {number[]}
+ * Using the two pointer algorithm, this method will find
+ * the indexes of the three numbers in the passed sorted array
+ * that add up to the passed sum.
+ * 
+ * Returns [-1,-1] if there are no numbers that can be found
+ * 
+ * Time Complexity: O(n^2)
  */
-function threeSum(arr, x) {
+function threeSum(arr: number[], x: number): [number, number, number] {
   for(let i of arr) {
     let j = i + 1;
     let k = arr.length - 1;
@@ -58,16 +66,19 @@ function threeSum(arr, x) {
 // console.log(threeSum([1,2,4,5,12], 19));
 
 /**
- * @param {number[]} arr
- * @return {number[]}
+ * Using the two pointer algorithm, this method will be given
+ * a sorted array and will return a sorted array of the squares
+ * of those numbers.
+ * 
+ * Time Complexity: O(n)
  */
-function sortedSquare(arr) {
+function sortedSquare(arr: number[]): number[] {
   // Set right and left
   let right = 0;
   while (right < arr.length && arr[right] < 0) {
     right++;
   }
-  left = right - 1;
+  let left = right - 1;
 
   let output = [];
 

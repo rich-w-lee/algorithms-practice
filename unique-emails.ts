@@ -1,16 +1,16 @@
 /**
- * @param {string[]} emails
- * @return {string[]}
+ * The number of unique emails in a given array
+ * 
+ * Unique emails will disregard any '.'s, and everything after the first
+ * '+' is ignored.
  */
-function numUniqueEmails(emails) {
+function numUniqueEmails(emails: string[]) {
     const normalizedEmails = emails.map((email) => {
         const [ name, domain ] = email.split('@');
         const [ baseName ] = name.split('+');
         
         return `${baseName.replace(/\./g, '')}@${domain}`;
     });
-
-    console.log(normalizedEmails);
     
     return new Set(normalizedEmails).size;
 };
