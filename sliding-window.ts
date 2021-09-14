@@ -1,9 +1,12 @@
 /**
- * @param {number[]} arr
- * @param {number} k
- * @return {number[]}
+ * Using the sliding window algorithm, this function
+ * will be given an array of numbers and a size, k. The
+ * goal is to determine the array of size k that has the
+ * largest sum of values, and return that value.
+ * 
+ * Time Complexity: O(n)
  */
-function maxSubArray(arr, k) {
+function maxSubArray(arr: number[], k: number): number {
   let maxSum = -Infinity;
   let currSum = 0;
   let start = 0;
@@ -22,16 +25,17 @@ function maxSubArray(arr, k) {
 }
 
 // Test
-// console.log(maxSubArray([2,3,4,1,5], 3)); // Expected = 10
-
-// Size of smallest contiguous subarray with a sum >= k
+console.log(maxSubArray([2,3,4,1,5], 3)); // Expected = 10
 
 /**
- * @param {number[]} arr
- * @param {number} k
- * @return {number}
+ * Using the sliding window algorithm, this function
+ * will be given an array of numbers and a sum, k.
+ * The goal is to find the smallest contiguous subarray
+ * with a sum >= k.
+ * 
+ * Time Complexity: O(n)
  */
-function smallestSubarray(arr, k) {
+function smallestSubarray(arr: number[], k: number): number {
   let minSize = Infinity;
   let currSum = 0;
   let start = 0;

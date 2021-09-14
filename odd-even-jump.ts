@@ -1,14 +1,24 @@
 /**
- * @param {number[]} arr
- * @return {number}
+ * WARNING: Brute Force Algorithm
+ * 
+ * Given an array, we need to find the number of
+ * indexes that can "jump" to the end of the array.
+ * 
+ * A "jump" is defined as this:
+ * - For an odd jump (1st, 3rd, 5th, etc), we move to the
+ *   next element in the list that is higher than the current value
+ *   and the lowest possible value in the rest of the array
+ * - For an even jump (2nd, 4th, 6th, etc), we move to the
+ *   next element in the list that is lower than the current value
+ *   and the highest possible value in the rest of the array
  */
-function oddEvenJumps(arr) {
+function oddEvenJumps(arr: number[]): number {
   let numGoodIndexes = 1;
 
   for (let i = arr.length - 2; i >= 0; i--) {
 
     let isOdd = true;
-    let currentJumpIndex = i;
+    let currentJumpIndex: number = i;
     while(true) {
       let targetValue;
       let targetValueIndex;
@@ -45,7 +55,7 @@ function oddEvenJumps(arr) {
 
       // Update fields
       isOdd = !isOdd;
-      currentJumpIndex = targetValueIndex;
+      currentJumpIndex = targetValueIndex as number;
 
       // Check if at end of array, 
       if (currentJumpIndex === arr.length - 1) {
@@ -61,10 +71,10 @@ function oddEvenJumps(arr) {
 
 
 // Test
-console.assert(oddEvenJumps([10,13,12,14,15]) === 2);
-console.assert(oddEvenJumps([2,3,1,1,4]) === 3); // Good indexes = 1,3,4
-console.assert(oddEvenJumps([5,1,3,4,2]) === 3);
-console.assert(oddEvenJumps([
+console.log(oddEvenJumps([10,13,12,14,15]));  // Expected = 2
+console.log(oddEvenJumps([2,3,1,1,4]));       // Expected = 3
+console.log(oddEvenJumps([5,1,3,4,2]));       // Expected = 3
+console.log(oddEvenJumps([                    // Expected = 3318
   48376,
   7219,
   35558,
@@ -20065,5 +20075,5 @@ console.assert(oddEvenJumps([
   62448,
   47843,
   46684
-]) === 3318);
+]));
 

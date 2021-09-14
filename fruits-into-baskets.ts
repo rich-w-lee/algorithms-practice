@@ -1,8 +1,15 @@
-/**
- * @param {number[]} fruits
- * @return {number}
+/** 
+ * This function will find the largest contiguous subarray
+ * that contains only 2 unique values.
+ * 
+ * For flavor, each value in the array is a fruit.
+ * We have 2 baskets, and only one fruit can go into each basket.
+ * We can only "start" picking fruit once. So once we stop, we cannot restart.
+ * We need to find the section of the list that would give us the most fruit.
+ * 
+ * Time Complexity: O(n)
  */
-function totalFruit(fruits) {
+function totalFruit(fruits: number[]): number {
     // Most recent basket
     let f1;
     let f1ConsecutiveCount = 0;
@@ -49,7 +56,6 @@ function totalFruit(fruits) {
 };
 
 // Test
-
 console.log(totalFruit([1,2,1])); // 3 - [1,2,1]
 console.log(totalFruit([0,1,2,2])); // 3 - [1,2,2]
 console.log(totalFruit([1,2,3,2,2])); // 4 - [2,3,2,2]
