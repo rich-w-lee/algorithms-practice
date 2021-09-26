@@ -1,4 +1,7 @@
 function checkPermutation1(str1: string, str2: string): boolean {
+  if (str1.length !== str2.length ) {
+    return false;
+  }
 	const charCounter: Record<string, number> = {};
 	// Populate char counter map
 	for(let i = 0; i < str1.length; i++) {
@@ -25,9 +28,13 @@ function checkPermutation1(str1: string, str2: string): boolean {
 
 // Test
 console.assert(checkPermutation1('aba', 'aab') === true);
+console.assert(checkPermutation1('aba', 'abab') === false);
 console.assert(checkPermutation1('aba', 'abb') === false);
 
 function checkPermutation2(str1: string, str2: string): boolean {
+  if (str1.length !== str2.length ) {
+    return false;
+  }
   return sort(str1) === sort(str2);
 }
 
@@ -36,4 +43,5 @@ function sort(str: string): string {
 }
 
 console.assert(checkPermutation2('aba', 'aab') === true);
+console.assert(checkPermutation2('aba', 'abab') === false);
 console.assert(checkPermutation2('aba', 'abb') === false);
