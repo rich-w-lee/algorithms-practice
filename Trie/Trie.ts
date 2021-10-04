@@ -60,6 +60,14 @@ export class Trie {
 
   /**
    * Returns the list of words that contain the prefix
+   * 
+   * Time Complexity: O(n) where n is words in the Trie
+   *  - This is because even though we visit each child
+   *    of all nodes after the prefix, there's a static
+   *    amount of children (26). Even though we're visiting
+   *    children of children and that number will be recursively
+   *    larger, it's static. It depends on the number of
+   *    nodes...thus complexity is O(n).
    */
   wordsFromPrefix(prefix: string): string[] {
     // Step 1: Find end node for prefix
