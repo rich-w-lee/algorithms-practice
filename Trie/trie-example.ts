@@ -11,4 +11,4 @@ trie1.insert('bet');
 
 console.log(trie1.search('eat'));
 console.log(trie1.search('beat'));
-console.log(trie1.wordsFromPrefix('ea'));
+console.log(trie1.wordsFromPrefix('eat'));

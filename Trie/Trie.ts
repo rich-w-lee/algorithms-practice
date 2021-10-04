@@ -83,12 +83,18 @@ export class Trie {
     }
 
     // Step 2: Find all children (recursively)
-    return this.findWordsFromPrefixNode(crawlNode);
+    const words = [];
+    if (crawlNode.word) {
+      words.push(crawlNode.word);
+    }
+    words.push(...this.findWordsFromPrefixNode(crawlNode));
+    return words;
   }
 
   findWordsFromPrefixNode(node: TrieNode): string[] {
     let crawlNode = node;
     let words: string[] = [];
+
     for (let i = 0; i < crawlNode.children.length; i++) {
       // If the child is null, we don't need to find it's children
       if (!crawlNode.children[i]) {

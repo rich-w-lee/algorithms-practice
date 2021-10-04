@@ -1,4 +1,4 @@
-function replaceWords(dictionary: string[], sentence: string): string {
+export function replaceWords(dictionary: string[], sentence: string): string {
   // Step 1: Construct Trie
   // O(nm) : n = dict length, m = longest string
   const root = new TrieNode();
