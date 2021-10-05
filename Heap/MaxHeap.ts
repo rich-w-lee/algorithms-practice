@@ -1,7 +1,6 @@
 import { Heap } from './Heap';
 
-// Root node will be the smallest element
-export class MinHeap extends Heap {
+export class MaxHeap extends Heap {
   peek(): number | null {
     if(this.size === 0) return null;
     return this.items[0];
@@ -14,7 +13,7 @@ export class MinHeap extends Heap {
     const item = this.items[0];
     this.items[0] = this.items[this.size - 1];
     this.size--;
-  
+
     this.heapifyDown();
     return item;
   }
@@ -27,7 +26,7 @@ export class MinHeap extends Heap {
   }
 
   remove(value: number): number | null {
-    if(this.size === 0) return null;
+    if (this.size === 0) return null;
 
     // Part 1: Find index
     let valIndex = -1;
@@ -41,8 +40,8 @@ export class MinHeap extends Heap {
       return null;
     }
 
-    // Part 2: Remove, Heapify Down
-
+    // Part 2: Remove, Heapify down
+  
     // Move last node to the node to remove
     const item = this.items[valIndex];
     this.items[valIndex] = this.items[this.size - 1];
@@ -52,27 +51,29 @@ export class MinHeap extends Heap {
     return item;
   }
 
-  private heapifyDown(): void {
-    let index = 0;
-    while (this.hasLeftChild(index)) {
-      let smallerChildIndex = this.getLeftChildIndex(index);
-      if (this.hasRightChild(index) && this.rightChild(index) < this.leftChild(index)) {
-        smallerChildIndex = this.getRightChildIndex(index);
-      }
-
-      if (this.items[index] < this.items[smallerChildIndex]) {
-        break;
-      } else {
-        this.swap(index, smallerChildIndex);
-      }
-      index = smallerChildIndex;
+  private heapifyUp() {
+    let index = this.size - 1;
+    while (this.hasParent(index) && this.parent(index) < this.items[index]) {
+      this.swap(this.getParentIndex(index), index);
     }
   }
 
-  private heapifyUp(): void {
-    let index = this.size - 1;
-    while (this.hasParent(index) && this.parent(index) > this.items[index]) {
-      this.swap(this.getParentIndex(index), index);
+  private heapifyDown() {
+    let index = 0;
+
+    // Use left child because children are added left to right
+    while (this.hasLeftChild(index)) {
+      let largerChildIndex = this.getLeftChildIndex(index);
+      if (this.hasRightChild(index) && this.rightChild(index) > this.leftChild(index)) {
+        largerChildIndex = this.getRightChildIndex(index);
+      }
+
+      if (this.items[index] > this.items[largerChildIndex]) {
+        break;
+      } else {
+        this.swap(index, largerChildIndex);
+      }
+      index = largerChildIndex;
     }
   }
 }
