@@ -105,6 +105,7 @@ export class MinHeap {
   remove(value: number): number | null {
     if(this.size === 0) { return null; }
 
+    // Part 1: Find index
     let valIndex = -1;
     for (let i = 0; i < this.size; i++) {
       if (this.items[i] === value) {
@@ -116,6 +117,7 @@ export class MinHeap {
       return null;
     }
 
+    // Part 2: Remove, Heapify Down
     const item = this.items[valIndex];
     this.items[valIndex] = this.items[this.size - 1];
     this.size--;
