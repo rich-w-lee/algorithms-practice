@@ -100,4 +100,27 @@ export class MinHeap {
     this.size++;
     this.heapifyUp();
   }
+
+
+  remove(value: number): number | null {
+    if(this.size === 0) { return null; }
+
+    let valIndex = -1;
+    for (let i = 0; i < this.size; i++) {
+      if (this.items[i] === value) {
+        valIndex = i;
+        break;
+      }
+    }
+    if (valIndex < 0) {
+      return null;
+    }
+
+    const item = this.items[valIndex];
+    this.items[valIndex] = this.items[this.size - 1];
+    this.size--;
+    this.heapifyDown();
+    return item;
+
+  }
 }
