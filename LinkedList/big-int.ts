@@ -1,4 +1,4 @@
-import { LinkedList, LinkedListNode } from "./linked-list";
+import { LinkedList, LinkedListNode } from './LinkedList';
 
 /**
  * BigInt format: A linked list that represents a number. Every element represents the 3 digits of a large number that
@@ -78,12 +78,12 @@ function bigIntMean3(l1: LinkedList<number>, l2: LinkedList<number>, l3: LinkedL
 
   while(c1) {
     total *= (10 ** 3);
-    total += (c1.value + c2.value + c3.value);
+    total += (c1.value + c2!.value + c3!.value);
 
     // Move currents to next element in list
     c1 = c1.next;
-    c2 = c2.next;
-    c3 = c3.next;
+    c2 = c2!.next;
+    c3 = c3!.next;
   }
 
   return Math.round(total / 3);
@@ -92,7 +92,7 @@ function bigIntMean3(l1: LinkedList<number>, l2: LinkedList<number>, l3: LinkedL
 
 function bigIntMean3v2(l1: LinkedList<number>, l2: LinkedList<number>, l3: LinkedList<number>): LinkedListNode<number> {
 
-  let headNode: LinkedListNode<number>;
+  let headNode: LinkedListNode<number> | null = null;
   let currNode: LinkedListNode<number>;
   let prevNode: LinkedListNode<number>;
 
@@ -104,10 +104,10 @@ function bigIntMean3v2(l1: LinkedList<number>, l2: LinkedList<number>, l3: Linke
 
   while(c1) {
     // Move the previous currNode (since currNode hasn't been changed yet) to prevNode
-    prevNode = currNode;
+    prevNode = currNode!;
 
     // Calculate total and average for this round
-    let currTotal = c1.value + c2.value + c3.value + (remainder * 1000);
+    let currTotal = c1.value + c2!.value + c3!.value + (remainder * 1000);
     let currAvg = Math.floor(currTotal / 3);
 
     // Create node for current number
@@ -128,12 +128,12 @@ function bigIntMean3v2(l1: LinkedList<number>, l2: LinkedList<number>, l3: Linke
 
     // Move currents to next element in list
     c1 = c1.next;
-    c2 = c2.next;
-    c3 = c3.next;
+    c2 = c2!.next;
+    c3 = c3!.next;
   }
 
   // Round last node's value as needed
-  currNode.value += Math.round(remainder / 3);
+  currNode!.value += Math.round(remainder / 3);
 
   // Print num just to be sure
   let testCurr = headNode;
@@ -142,7 +142,7 @@ function bigIntMean3v2(l1: LinkedList<number>, l2: LinkedList<number>, l3: Linke
     testCurr = testCurr.next;
   }
 
-  return headNode;
+  return headNode!;
 }
 
 // Test
