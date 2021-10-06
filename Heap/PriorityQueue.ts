@@ -60,7 +60,7 @@ export class PriorityQueue<T> implements PQ<T> {
    */
   contains(val: T): boolean {
     for (let i = 0; i < this.size; i++) {
-      if (this.comparer(val, this.items[i])) return true;
+      if (this.isEqual(val, this.items[i])) return true;
     }
     return false;
   }
@@ -103,7 +103,7 @@ export class PriorityQueue<T> implements PQ<T> {
     // Step 1: Find Index
     let valIndex = -1;
     for (let i = 0; i < this.size; i++) {
-      if (this.comparer(val, this.items[i])) {
+      if (this.isEqual(val, this.items[i])) {
         valIndex = i;
       }
     }
