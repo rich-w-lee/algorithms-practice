@@ -55,6 +55,7 @@ export class MaxHeap extends Heap {
     let index = this.size - 1;
     while (this.hasParent(index) && this.parent(index) < this.items[index]) {
       this.swap(this.getParentIndex(index), index);
+      index = this.getParentIndex(index);
     }
   }
 
