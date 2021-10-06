@@ -1,26 +1,43 @@
-declare class PQ {
+declare class PQ<T> {
   size: number;
-  add(val: number): void; 
+  comparer: CompareFunction<T>;
+  add(val: T): void; 
   clear(): void;
-  contains(val: number): boolean;
-  peek(): number | null;
-  poll(): number | null;
-  remove(val: number): boolean;
+  contains(val: T): boolean;
+  peek(): T | null;
+  poll(): T | null;
+  remove(val: T): boolean;
 }
+
+declare type CompareFunction<T> = (a: T, b: T) => number;
 
 /**
  * Priority Queue Implementation using a Max Heap
  */
-export class PriorityQueue implements PQ {
+export class PriorityQueue<T> implements PQ<T> {
   size = 0;
-  private items: number[] = [];
+  private items: T[] = [];
+
+  constructor(comparer?: CompareFunction<T>) {
+    if (comparer) {
+      this.comparer = comparer;
+    }
+  }
+
+  /**
+   * A function that compares two elements
+   * Return 0 if the elements are the same
+   * Return 1 if the a is less than b
+   * Return -1 if a is greater than b
+   */
+  comparer = (a: T, b: T): number => a > b ? 1 : -1;
 
   /**
    * Adds the given value to the Priority Queue
    * 
    * Time Complexity: O(logn)
    */
-  add(val: number) {
+  add(val: T) {
     this.items[this.size] = val;
     this.size++;
     this.heapifyUp();
@@ -41,9 +58,9 @@ export class PriorityQueue implements PQ {
    * 
    * Time Complexity: O(n)
    */
-  contains(val: number): boolean {
+  contains(val: T): boolean {
     for (let i = 0; i < this.size; i++) {
-      if (this.items[i] === val) return true;
+      if (this.comparer(val, this.items[i])) return true;
     }
     return false;
   }
@@ -53,7 +70,7 @@ export class PriorityQueue implements PQ {
    * 
    * Time Complexity: O(1)
    */
-  peek(): number | null {
+  peek(): T | null {
     if (!this.size) return null;
     return this.items[0];
   }
@@ -63,7 +80,7 @@ export class PriorityQueue implements PQ {
    * 
    * Time Complexity: O(logn)
    */
-  poll(): number | null {
+  poll(): T | null {
     if (!this.size) return null;
 
     const item = this.items[0];
@@ -82,11 +99,11 @@ export class PriorityQueue implements PQ {
    * 
    * Time Complexity: O(n)
    */
-  remove(val: number): boolean {
+  remove(val: T): boolean {
     // Step 1: Find Index
     let valIndex = -1;
     for (let i = 0; i < this.size; i++) {
-      if (val === this.items[i]) {
+      if (this.comparer(val, this.items[i])) {
         valIndex = i;
       }
     }
@@ -98,6 +115,18 @@ export class PriorityQueue implements PQ {
     this.size--;
     this.heapifyDown();
     return true;
+  }
+
+  private isEqual(a: T, b: T): boolean {
+    return this.comparer(a, b) === 0;
+  }
+
+  private isLessThan(a: T, b: T): boolean {
+    return this.comparer(a, b) > 0;
+  }
+
+  private isGreaterThan(a: T, b: T): boolean {
+    return this.comparer(a, b) < 0;
   }
 
   private getParentIndex(index: number) {
@@ -147,12 +176,12 @@ export class PriorityQueue implements PQ {
       let largerChildIndex = this.getLeftChildIndex(index);
       const leftChild = this.items[this.getLeftChildIndex(index)];
       const rightChild = this.items[this.getRightChildIndex(index)];
-      if (this.hasRightChild(largerChildIndex) && rightChild > leftChild) {
+      if (this.hasRightChild(largerChildIndex) && this.isGreaterThan(rightChild, leftChild)) {
         largerChildIndex = this.getRightChildIndex(index);
       }
 
       // If Root is larger than largest child, break
-      if (this.items[index] > this.items[largerChildIndex]) {
+      if (this.isGreaterThan(this.items[index], this.items[largerChildIndex])) {
         break;
       }
       // Otherwise, swap elements and continue moving down tree
@@ -172,7 +201,7 @@ export class PriorityQueue implements PQ {
 
     while (this.hasParent(index)) {
       const parentIndex = this.getParentIndex(index);
-      if (this.items[parentIndex] > this.items[index]) {
+      if (this.isGreaterThan(this.items[parentIndex], this.items[index])) {
         break;
       }
       this.swap(parentIndex, index);
