@@ -121,11 +121,7 @@ export class PriorityQueue<T> implements PQ<T> {
     return this.comparer(a, b) === 0;
   }
 
-  private isLessThan(a: T, b: T): boolean {
-    return this.comparer(a, b) > 0;
-  }
-
-  private isGreaterThan(a: T, b: T): boolean {
+  private isHigherPriority(a: T, b: T): boolean {
     return this.comparer(a, b) < 0;
   }
 
@@ -173,20 +169,20 @@ export class PriorityQueue<T> implements PQ<T> {
 
     while (this.hasLeftChild(index)) {
       // Find index of largest child
-      let largerChildIndex = this.getLeftChildIndex(index);
+      let higherPriorityChildIndex = this.getLeftChildIndex(index);
       const leftChild = this.items[this.getLeftChildIndex(index)];
       const rightChild = this.items[this.getRightChildIndex(index)];
-      if (this.hasRightChild(index) && this.isGreaterThan(rightChild, leftChild)) {
-        largerChildIndex = this.getRightChildIndex(index);
+      if (this.hasRightChild(index) && this.isHigherPriority(rightChild, leftChild)) {
+        higherPriorityChildIndex = this.getRightChildIndex(index);
       }
 
       // If Root is larger than largest child, break
-      if (this.isGreaterThan(this.items[index], this.items[largerChildIndex])) {
+      if (this.isHigherPriority(this.items[index], this.items[higherPriorityChildIndex])) {
         break;
       }
       // Otherwise, swap elements and continue moving down tree
-      this.swap(index, largerChildIndex);
-      index = largerChildIndex;
+      this.swap(index, higherPriorityChildIndex);
+      index = higherPriorityChildIndex;
     }
   }
 
@@ -201,7 +197,7 @@ export class PriorityQueue<T> implements PQ<T> {
 
     while (this.hasParent(index)) {
       const parentIndex = this.getParentIndex(index);
-      if (this.isGreaterThan(this.items[parentIndex], this.items[index])) {
+      if (this.isHigherPriority(this.items[parentIndex], this.items[index])) {
         break;
       }
       this.swap(parentIndex, index);
