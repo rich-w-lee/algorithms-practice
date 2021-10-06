@@ -62,16 +62,18 @@ export class MinHeap extends Heap {
 
       if (this.items[index] < this.items[smallerChildIndex]) {
         break;
-      } else {
-        this.swap(index, smallerChildIndex);
-      }
+      } 
+      this.swap(index, smallerChildIndex);
       index = smallerChildIndex;
     }
   }
 
   private heapifyUp(): void {
     let index = this.size - 1;
-    while (this.hasParent(index) && this.parent(index) > this.items[index]) {
+    while (this.hasParent(index)) {
+      if (this.parent(index) < this.items[index]) {
+        break;
+      }
       this.swap(this.getParentIndex(index), index);
       index = this.getParentIndex(index);
     }

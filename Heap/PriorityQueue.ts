@@ -27,8 +27,8 @@ export class PriorityQueue<T> implements PQ<T> {
   /**
    * A function that compares two elements
    * Return 0 if the elements are the same
-   * Return 1 if the a is less than b
-   * Return -1 if a is greater than b
+   * Return > 0 if the a is lower priority than b
+   * Return < 0 if a is higher priority than b
    */
   comparer = (a: T, b: T): number => a > b ? 1 : -1;
 
@@ -176,7 +176,7 @@ export class PriorityQueue<T> implements PQ<T> {
       let largerChildIndex = this.getLeftChildIndex(index);
       const leftChild = this.items[this.getLeftChildIndex(index)];
       const rightChild = this.items[this.getRightChildIndex(index)];
-      if (this.hasRightChild(largerChildIndex) && this.isGreaterThan(rightChild, leftChild)) {
+      if (this.hasRightChild(index) && this.isGreaterThan(rightChild, leftChild)) {
         largerChildIndex = this.getRightChildIndex(index);
       }
 

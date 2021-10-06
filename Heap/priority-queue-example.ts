@@ -26,3 +26,20 @@ console.log(pqMax.poll() === 11);
 console.log(pqMax.poll() === 10);
 console.log(pqMax.poll() === 9);
 console.log(pqMax.poll() === null);
+
+const pqMin = new PriorityQueue<number>((a,b) => a - b);
+pqMin.add(10);
+pqMin.add(15);
+pqMin.add(5);
+pqMin.add(14);
+pqMin.add(8);
+
+console.log(pqMin.peek() === 5);
+console.log(pqMin.poll() === 5);
+console.log(pqMin.remove(8) === true);
+console.log(pqMin.peek() === 10);
+console.log(pqMin.poll() === 10);
+console.log(pqMin.remove(14) === true);
+console.log(pqMin.peek() === 15);
+console.log(pqMin.poll() === 15);
+console.log(pqMin.peek() === null);
