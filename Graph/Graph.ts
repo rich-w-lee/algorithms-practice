@@ -1,7 +1,25 @@
+export class Edge {
+  src: number;
+  dest: number;
+  weight: number;
 
+  constructor(src: number, dest: number, weight = 1) {
+    this.src = src;
+    this.dest = dest;
+    this.weight = weight;
+  }
+}
 
-import { Edge } from './Edge';
-import { GraphNode } from './GraphNode';
+export class GraphNode {
+  value: number;
+  weight: number;
+
+  constructor(value: number, weight = 1) {
+    this.value = value;
+    this.weight = weight;
+  }
+}
+
 
 /**
  * An implementation of an graph.

@@ -1,5 +1,4 @@
-import { Edge } from './Edge';
-import { Graph, GraphMatrix } from './Graph';
+import { Edge, Graph, GraphMatrix } from './Graph';
 
 const edges = [
   new Edge(0, 1, 2),
