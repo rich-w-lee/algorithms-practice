@@ -35,6 +35,7 @@ export class Queue<T> {
     }
     const node = this.head;
     this.head = node.next;
+    this.size--;
     return node.value;
   }
 }
