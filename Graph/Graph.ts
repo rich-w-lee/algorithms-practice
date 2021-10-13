@@ -33,16 +33,26 @@ export class GraphNode<T> {
  * the edges list. 
  */
 export class Graph<T> {
-  // Adjacency List
+  /**
+   * Adjacency List
+   */
   adjList: GraphNode<T>[][] = [];
-  
+
+  /**
+   * A list of all the graph nodes in this graph
+   */
+  nodes: T[] = [];
+
+  /**
+   * The root node of the graph
+   */
+  root: T | null = null;
+
   /**
    * A map to store the corresponding index in the
    * adjacency list for a given node's value.
    */
-  private indexMap: Map<T, number> = new Map();
-
-  root: GraphNode<T> | null = null;
+  indexMap: Map<T, number> = new Map();
 
   constructor(edges: Edge<T>[], directed = false) {
     // Add each node to indexMap and init index in adjacency list
@@ -60,67 +70,66 @@ export class Graph<T> {
         this.adjList[index] = [];
       }
 
-      // Push graph node to adjacency list
       const srcNode = new GraphNode(edge.src, edge.weight);
       const destNode = new GraphNode(edge.dest, edge.weight);
-
+      
       this.adjList[this.indexMap.get(edge.src)!].push(destNode);
       if (!directed) {
         this.adjList[this.indexMap.get(edge.dest)!].push(srcNode);
       }
-
-      // Set root to first node
-      if (nodeCount === 2) {
-        this.root = srcNode;
-      }
     }
+
+    this.indexMap.forEach((v,k) => {
+      this.nodes[v] = k;
+    })
+    if (this.nodes[0] !== undefined) this.root = this.nodes[0];
   }
 
-  dfsPrint(root: GraphNode<T> | null) {
+  dfsPrint(root: T | null) {
     if (!root) return;
 
-    let stack = new Stack<GraphNode<T>>();
+    let stack = new Stack<T>();
     let visited: Record<number, boolean> = {};
 
     stack.push(root);
 
     while (!stack.empty()) {
       const node = stack.pop()!;
-      const nodeIndex = this.indexMap.get(node.value)!;
+      const nodeIndex = this.indexMap.get(node)!;
       
       if (visited[nodeIndex]) continue
 
       visited[nodeIndex] = true;
 
-      console.log('Node: ', node.value);
+      console.log('Node: ', node);
 
       for (const child of this.adjList[nodeIndex]) {
         if (!visited[this.indexMap.get(child.value)!]) {
-          stack.push(child);
+          stack.push(child.value);
         }
       }
     }
   }
 
-  bfsPrint(root: GraphNode<T> | null) {
+  bfsPrint(root: T | null) {
     if (!root) return;
 
-    let queue = new Queue<GraphNode<T>>();
+    let queue = new Queue<T>();
     let visited: Record<number, boolean> = {};
 
     queue.add(root);
 
     while (!queue.empty()) {
       const node = queue.poll()!;
-      const nodeIndex = this.indexMap.get(node.value)!;
+      const nodeIndex = this.indexMap.get(node)!;
 
       if (visited[nodeIndex]) continue;
 
       visited[nodeIndex] = true;
-      console.log('Node: ', node.value);
+      console.log('Node: ', node);
 
       for (const child of this.adjList[nodeIndex]) {
-        if (!visited[this.indexMap.get(child.value)!]) queue.add(child);
+        if (!visited[this.indexMap.get(child.value)!]) queue.add(child.value);
       }
     }
   }
