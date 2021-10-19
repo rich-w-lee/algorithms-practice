@@ -25,9 +25,9 @@ export function howSum(targetSum: number, numbers: number[], memo: Record<number
     const remainder = targetSum - num;
     if (remainder < 0) continue;
 
-    const result = howSum(remainder, numbers, memo);
+    let result = howSum(remainder, numbers, memo);
     if (result) {
-      result.push(num);
+      result = [...result, num];
       memo[targetSum] = result;
       return memo[targetSum];
     };
