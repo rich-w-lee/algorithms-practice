@@ -28,7 +28,7 @@ console.log(fibRecursive(6));
 console.log(fibRecursive(7));
 t2 = process.hrtime(t1);
 // If each processing fib for a single number took 1s, this would take 16384s, or 4.5h
-console.log('Time in millisecond is: ', t2[0] * 1000 + t2[1] / 1000000);
+console.log('Time in milliseconds is: ', t2[0] * 1000 + t2[1] / 1000000);
 
 
 // O(n)
@@ -54,4 +54,4 @@ console.log(fibMemo(6));
 console.log(fibMemo(7));
 t2 = process.hrtime(t1);
  // If each processing fib for a single number took 1s, this would take 14s
-console.log('Time in millisecond is: ', t2[0] * 1000 + t2[1] / 1000000);
+console.log('Time in milliseconds is: ', t2[0] * 1000 + t2[1] / 1000000);

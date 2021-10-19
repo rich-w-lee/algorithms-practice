@@ -64,4 +64,4 @@ console.log(gridTravelerMemo(3,3)); // 6
 console.log(gridTravelerMemo(18,18)); // 2333606220
 t2 = process.hrtime(t1);
 // If each processing fib for a single number took 1s, this would take 16384s, or 4.5h
-console.log('Time in millisecond is: ', t2[0] * 1000 + t2[1] / 1000000);
+console.log('Time in milliseconds is: ', t2[0] * 1000 + t2[1] / 1000000);
