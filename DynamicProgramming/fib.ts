@@ -20,12 +20,15 @@ export function fibRecursive(n: number): number {
 }
 
 // Test
-let t1 = process.hrtime();
+let t1: [number, number], t2: [number, number];
+
+t1 = process.hrtime();
 console.log(fibRecursive(1));
 console.log(fibRecursive(6));
 console.log(fibRecursive(7));
-// console.log(fibRecursive(50));
-console.log('Time:', process.hrtime(t1));
+t2 = process.hrtime(t1);
+// If each processing fib for a single number took 1s, this would take 16384s, or 4.5h
+console.log('Time in millisecond is: ', t2[0] * 1000 + t2[1] / 1000000);
 
 
 // O(n)
@@ -49,4 +52,6 @@ t1 = process.hrtime();
 console.log(fibMemo(1));
 console.log(fibMemo(6));
 console.log(fibMemo(7));
-console.log('Time:', process.hrtime(t1));
+t2 = process.hrtime(t1);
+ // If each processing fib for a single number took 1s, this would take 14s
+console.log('Time in millisecond is: ', t2[0] * 1000 + t2[1] / 1000000);
