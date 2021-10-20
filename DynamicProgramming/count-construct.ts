@@ -1,5 +1,3 @@
-import { count } from "console";
-
 /**
  * Returns whether you can construct the sentence from the given words,
  * and the amount of ways.
