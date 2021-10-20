@@ -3,8 +3,8 @@
  * and the different ways.
  * 
  * TC: (m = sentence length, n = words length)
- * - Brute: O(n^(m))
- * - Optimized: O(n^)
+ * - Brute: O(n^m)
+ * - Optimized: O(n^m)
  *      
  * 
  * SC:
