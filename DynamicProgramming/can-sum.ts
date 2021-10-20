@@ -6,6 +6,9 @@
  * Constraints:
  * - Can use an element in the array as much as we want
  * - All numbers are positive
+ * 
+ * TC: O(mn)
+ * SC: O(m)
  */
 export function canSum(targetSum: number, numbers: number[], memo: Record<number, boolean> = {}): boolean {
   // Base case 0: memo in target sum

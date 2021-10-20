@@ -1,5 +1,9 @@
 import { time } from '../../time';
 
+/**
+ * TC: O(mn)
+ * SC: O(mn)
+ */
 export function gridTravelerTab(m: number, n: number): number {
   const table: number[][] = new Array(m + 1).fill(0).map(() => new Array(n + 1).fill(0));
 
