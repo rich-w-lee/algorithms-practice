@@ -34,7 +34,7 @@
   // 2x1 = 1 + 0 = 1
   // = 1 + 1 = 0
 
-function gridTravelerMemo(n: number, m: number, memo: Record<string, number> = {}): number {
+export function gridTravelerMemo(n: number, m: number, memo: Record<string, number> = {}): number {
   const memoKey = `${n},${m}`;
   const memoKey2 = `${m},${n}`;
   if (memo[memoKey]) return memo[memoKey];
@@ -57,11 +57,10 @@ function gridTravelerMemo(n: number, m: number, memo: Record<string, number> = {
 let t1: [number, number], t2: [number, number];
 
 t1 = process.hrtime();
-console.log(gridTravelerMemo(1,1)); // 0
+console.log(gridTravelerMemo(1,1)); // 1
 console.log(gridTravelerMemo(2,3)); // 3
 console.log(gridTravelerMemo(3,2)); // 3
 console.log(gridTravelerMemo(3,3)); // 6
 console.log(gridTravelerMemo(18,18)); // 2333606220
 t2 = process.hrtime(t1);
-// If each processing fib for a single number took 1s, this would take 16384s, or 4.5h
 console.log('Time in milliseconds is: ', t2[0] * 1000 + t2[1] / 1000000);
