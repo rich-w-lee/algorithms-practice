@@ -56,6 +56,14 @@ export class Stack<T> {
     return -1;
   }
 
+  print() {
+    let crawlNode = this.top;
+    while (crawlNode) {
+      console.log(crawlNode.value);
+      crawlNode = crawlNode.next;
+    }
+    console.log();
+  }
 }
 
 class StackNode<T> {
