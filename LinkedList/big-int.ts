@@ -146,14 +146,10 @@ function bigIntMean3v2(l1: LinkedList<number>, l2: LinkedList<number>, l3: Linke
 }
 
 // Test
-//@ts-ignore
 const time1 = process.hrtime();
 
-//@ts-ignore
 // console.log(bigIntMean3(t1,t2,t3), `Time: ${process.hrtime(time1)}`) // Expect = 213159671667001
 
-//@ts-ignore
 console.log(bigIntMean3v2(t1,t2,t3), `Time: ${process.hrtime(time1)}`) // Expect = 213159671667001
 
-//@ts-ignore
 // console.log(bigIntMean([t1,t2,t3]), `Time: ${process.hrtime(time1)}`) // Expect = 213159671667001
